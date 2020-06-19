@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<h:form style="display: inline-block" enctype="multipart/form-data" acceptcharset="UTF-8">
+	<nav class="aw-menu">
+		<ul>
+			<li>
+				<h:link outcome="/Home">
+					<i class="fa  fa-fw  fa-home fa-1x" aria-hidden="true"></i>
+					Pagina Inicial
+				</h:link>
+			</li>
+			
+			<li>
+				<h:link outcome="/site/Usuario/Consulta/Usuario" rendered="#{seguranca.acessoListarPermitido}">
+					<i class="fa  fa-fw  fa-user fa-1x"></i>
+					Usuario
+				</h:link>
+			</li>
+			
+			<li>
+				<h:link outcome="/site/Grupo/Consulta/Grupo" rendered="#{seguranca.acessoListarPermitido}">
+					<i class="fa  fa-fw  fa-users fa-1x"></i>
+					Grupo
+				</h:link>
+			</li>
+			
+			<li>
+				<h:link outcome="/site/Permissao/Consulta/Permissao" rendered="#{seguranca.acessoListarPermitido}">
+					<i class="fa  fa-fw  fa-key fa-1x"></i>
+					Permissoes
+				</h:link>
+			</li>
+			
+			
+			<li>
+				<h:link outcome="/site/Usuario/MudarSenha/MudarSenha" >
+					<i class="fa fa-lock fa-1x" aria-hidden="true"></i>
+					Mudar Sua Senha
+				</h:link>
+			</li>
+			
+			<li>
+				<h:commandLink action="#{loginBean.sair()}"   value="Sair" >
+				<i class="fa fa-sign-out" aria-hidden="true"></i>
+				</h:commandLink>
+			</li>
+			
+		</ul>
+	</nav>
+	</h:form>
+</ui:composition>
