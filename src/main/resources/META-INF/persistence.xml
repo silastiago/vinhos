@@ -9,6 +9,8 @@
 		<class>br.com.model.Permissao</class>
 		<class>br.com.model.Grupo</class>
 		<class>br.com.model.Usuario</class>
+		<class>br.com.model.Categoria</class>
+		<class>br.com.model.Bebida</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://10.10.87.10/vinhos" />

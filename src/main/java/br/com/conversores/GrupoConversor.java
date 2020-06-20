@@ -23,8 +23,9 @@ public class GrupoConversor implements Converter{
 		Grupo retorno = null;			
 		
 		if (value != null) {
-			retorno = grupos.porCodigo(new Integer(value));
 			
+			retorno = grupos.porCodigo(new Integer(value));	
+			System.out.println("getAsObject: "+ retorno.getNome());
 			
 		}
 
@@ -36,6 +37,7 @@ public class GrupoConversor implements Converter{
 
 		if (value != null) {
 			Grupo grupo = (Grupo) value;
+			System.out.println("getAsString: "+ grupo.getNome());
 			return grupo.getCodigo() == null ? null : grupo.getCodigo().toString();
 
 		}

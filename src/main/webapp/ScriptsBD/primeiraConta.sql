@@ -6,6 +6,11 @@ insert into Permissao (codigo, nome) values (3, 'REMOVER');
 insert into Permissao (codigo, nome) values (4, 'ADMIN');
 
 
+insert into Permissao (nome) values ( 'LISTAR');
+insert into Permissao (nome) values ( 'ADICIONAR');
+insert into Permissao (nome) values ( 'REMOVER');
+insert into Permissao ( nome) values ( 'ADMIN');
+
 insert into usuario (codigo, nome, email, senha) values (1, 'TESTE', 'teste@gmail.com', '202cb962ac59075b964b07152d234b70');
 
 

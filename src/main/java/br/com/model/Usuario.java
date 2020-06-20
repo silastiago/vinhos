@@ -1,6 +1,7 @@
 package br.com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -36,7 +37,7 @@ public class Usuario implements Serializable{
 	private String nome;
 	private String email;	
 	private String senha;
-	private List<Grupo> grupos;
+	private List<Grupo> grupos = new ArrayList<Grupo>();
 
 	@Id
 	@GeneratedValue
@@ -96,7 +97,6 @@ public class Usuario implements Serializable{
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -133,4 +133,5 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
+	
 }

@@ -13,7 +13,6 @@ import javax.inject.Named;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
-import br.com.model.Grupo;
 import br.com.model.Usuario;
 import br.com.security.UsuarioSistema;
 import br.com.service.UsuarioService;
@@ -35,11 +34,13 @@ public class UsuarioBean implements Serializable{
 	private Usuario usuario = new Usuario();
 	private Usuario usuarioSelecionado;
 	private List<Usuario> listausuarios = new ArrayList<Usuario>();
-	private List<Grupo> listaGrupos;
 
 	public void cadastrar() {
 		
 		String senha = this.usuario.getSenha();
+		System.out.println("Usuario: "+usuario.getNome());
+
+		System.out.println("Usuario: "+usuario.getGrupos().get(0).getNome());
 		
 		this.usuario.setSenha(FacesUtil.md5(senha));
 		usuarioService.salvar(usuario);
@@ -156,47 +157,24 @@ public class UsuarioBean implements Serializable{
 		return usuario;
 	}
 
-
-
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-
 
 	public Usuario getUsuarioSelecionado() {
 		return usuarioSelecionado;
 	}
 
-
-
 	public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
 		this.usuarioSelecionado = usuarioSelecionado;
 	}
-
-
 
 	public List<Usuario> getListausuarios() {
 		return listausuarios;
 	}
 
-
-
 	public void setListausuarios(List<Usuario> listausuarios) {
 		this.listausuarios = listausuarios;
-	}
-
-
-
-	public List<Grupo> getListaGrupos() {
-		return listaGrupos;
-	}
-
-
-
-	public void setListaGrupos(List<Grupo> listaGrupos) {
-		this.listaGrupos = listaGrupos;
-	}
-	
+	}	
 	
 }
