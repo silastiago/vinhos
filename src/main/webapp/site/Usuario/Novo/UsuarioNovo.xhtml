@@ -25,8 +25,12 @@
 					styleClass="panelgrid-noborder"
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 				
-					<p:outputLabel value="Login" for="login" />
-					<p:inputText id="login" value="#{usuarioBean.usuario.login}" />
+					<p:outputLabel value="Nome" for="Nome" />
+					<p:inputText id="Nome" value="#{usuarioBean.usuario.nome}" />
+					
+					<p:outputLabel value="Email" for="Email" />
+					<p:inputText id="Email" value="#{usuarioBean.usuario.email}" />
+					
 					
 					<p:outputLabel value="Senha" for="senha" />
 					<p:password id="senha" value="#{usuarioBean.usuario.senha}" />

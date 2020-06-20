@@ -1,6 +1,7 @@
 package br.com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -35,7 +36,7 @@ public class Grupo implements Serializable{
 	
 	private Integer codigo;
 	private String nome;
-	private List<Permissao> permissoes;
+	private List<Permissao> permissoes = new ArrayList<Permissao>();
 	
 	@Id
 	@GeneratedValue
@@ -75,6 +76,7 @@ public class Grupo implements Serializable{
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((permissoes == null) ? 0 : permissoes.hashCode());
 		return result;
 	}
 
@@ -96,6 +98,11 @@ public class Grupo implements Serializable{
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (permissoes == null) {
+			if (other.permissoes != null)
+				return false;
+		} else if (!permissoes.equals(other.permissoes))
 			return false;
 		return true;
 	}

@@ -22,9 +22,11 @@ public class Grupos implements Serializable, IGrupo{
 
 	@SuppressWarnings("unchecked")
 	public List<Grupo> listar() {
+		
 		List<Grupo> listaGrupo = null;
-		Query query = manager.createQuery("Select c from Grupo c");
+		Query query = manager.createQuery("Select g from Grupo g");
 		listaGrupo = query.getResultList();
+		
 		return listaGrupo;
 	}
 

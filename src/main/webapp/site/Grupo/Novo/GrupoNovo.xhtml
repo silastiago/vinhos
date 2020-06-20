@@ -30,9 +30,10 @@
 					<p:inputText id="grupo" value="#{grupoBean.grupo.nome}" />
 					
 					<p:outputLabel value="Permissao" for="permissao" />
-					<p:selectManyCheckbox id="permissao" value="#{permissaoBean.listaPermissoes}" converter="permissaoConverter" layout="pageDirection" columns="2">
-        			<f:selectItems value="#{permissaoBean.listar()}" var="permissao" itemValue="#{permissao}" itemLabel="#{permissao.nome}"/>
-    				</p:selectManyCheckbox>
+					<p:selectManyCheckbox id="permissao" value="#{grupoBean.grupo.permissoes}" converter="permissaoConverter" layout="pageDirection" columns="2">
+	        			<f:selectItems value="#{permissaoBean.listar()}" var="permissao" itemValue="#{permissao}" itemLabel="#{permissao.nome}"/>
+	    				<f:attribute name="collectionType" value="java.util.ArrayList"/>
+	    			</p:selectManyCheckbox>
 					
 				</p:panelGrid>
 			</div>		

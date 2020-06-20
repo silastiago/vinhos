@@ -43,18 +43,18 @@ public class Seguranca {
 	
 	public boolean isAcessoCadastroPermitido() {
 		return externalContext.isUserInRole("ADICIONAR")
-				|| externalContext.isUserInRole("ROLE_ADMIN");
+				|| externalContext.isUserInRole("ADMIN");
 				
 	}
 	
 	public boolean isAcessoEdicaoPermitido() {
-		return externalContext.isUserInRole("ADICIONAR");
-				//|| externalContext.isUserInRole("CONSULTA");
+		return externalContext.isUserInRole("ADICIONAR")
+				|| externalContext.isUserInRole("ADMIN");
 	}
 	
 	public boolean isAcessoRemocaoPermitido() {
-		return externalContext.isUserInRole("REMOVER"); 
-				//|| externalContext.isUserInRole("CONSULTA");
+		return externalContext.isUserInRole("REMOVER") 
+				|| externalContext.isUserInRole("ADMIN");
 	}
 	
 	public boolean isAcessoListarPermitido() {
