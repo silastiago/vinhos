@@ -28,7 +28,7 @@ public class Bebida implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="codigo_categoria", referencedColumnName="codigo")
-	private Categoria categoria;
+	private Categoria categoria = new Categoria();
 	
 	@Column
 	private String teorAlcolico;

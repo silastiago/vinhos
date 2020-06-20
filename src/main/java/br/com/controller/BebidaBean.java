@@ -35,7 +35,7 @@ public class BebidaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("../Consulta/Categoria.xhtml");
+			fc.getExternalContext().redirect("../Consulta/Bebida.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,7 +49,7 @@ public class BebidaBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("../Consulta/Categoria.xhtml");
+			fc.getExternalContext().redirect("../Consulta/Bebida.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
