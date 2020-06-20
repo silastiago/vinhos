@@ -56,6 +56,11 @@
 		<intercept-url pattern="/site/Categoria/Novo/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
 		
 		
+		<intercept-url pattern="/site/Bebida/Consulta/**" access="hasAnyRole('LISTAR', 'ADMIN')" />
+		<intercept-url pattern="/site/Bebida/Edicao/**" access="hasAnyRole('ADICIONAR', 'ADMIN')"/>
+		<intercept-url pattern="/site/Bebida/Novo/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
+		
+		
 		<intercept-url pattern="/**" access="denyAll" />
 
 		<form-login login-page="/Login.xhtml"

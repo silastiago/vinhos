@@ -24,8 +24,7 @@ public class Categoria implements Serializable{
 	private Integer codigo;
 	@Column
 	private String categoria;
-	@OneToMany
-	private List<Bebida> bebidas;
+	
 	
 	public Integer getCodigo() {
 		return codigo;
@@ -41,16 +40,7 @@ public class Categoria implements Serializable{
 	
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
-	}
-	
-	
-	public List<Bebida> getBebidas() {
-		return bebidas;
-	}
-
-	public void setBebidas(List<Bebida> bebidas) {
-		this.bebidas = bebidas;
-	}
+	}	
 
 	@Override
 	public int hashCode() {
