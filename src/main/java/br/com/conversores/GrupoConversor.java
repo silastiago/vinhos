@@ -10,7 +10,7 @@ import br.com.repository.Grupos;
 import br.com.util.cdi.CDIServiceLocator;
 
 
-@FacesConverter(value="grupoConverter")
+@FacesConverter(value="grupoConverter", forClass = Grupo.class)
 public class GrupoConversor implements Converter{
 
 	private Grupos grupos;
@@ -25,7 +25,6 @@ public class GrupoConversor implements Converter{
 		if (value != null) {
 			
 			retorno = grupos.porCodigo(new Integer(value));	
-			System.out.println("getAsObject: "+ retorno.getNome());
 			
 		}
 
@@ -37,7 +36,6 @@ public class GrupoConversor implements Converter{
 
 		if (value != null) {
 			Grupo grupo = (Grupo) value;
-			System.out.println("getAsString: "+ grupo.getNome());
 			return grupo.getCodigo() == null ? null : grupo.getCodigo().toString();
 
 		}

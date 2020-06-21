@@ -1,19 +1,16 @@
 package br.com.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -33,70 +30,102 @@ public class Usuario implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Integer codigo;
-	private String nome;
-	private String email;	
-	private String senha;
-	private List<Grupo> grupos = new ArrayList<Grupo>();
-
 	@Id
 	@GeneratedValue
-	public Integer getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
-	}
+	private Integer codigo;
 	
 	@NotEmpty(message = "Nome deve ser informado")
 	@Column(name="nome")
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+	private String nome;
 	
 	@NotEmpty(message = "Email deve ser informado")
 	@Column(name="email")
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email.toUpperCase();
-	}
+	private String email;
+	
+	@Column(name="dataNascimento")
+	private Date dataNascimento;
 	
 	@NotEmpty(message = "Senha deve ser informada")
 	@Column(name="senha")
+	private String senha;
+	
+	@Transient
+	private String senha2;
+	
+	@ManyToOne
+	@JoinColumn(name="codigo_grupo", referencedColumnName="codigo")
+	private Grupo grupo = new Grupo();
+
+	public Integer getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
 	public String getSenha() {
 		return senha;
 	}
+
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}	
-	
-	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name="codigo_usuario"),
-			inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
-	public List<Grupo> getGrupos() {
-		return grupos;
 	}
-	public void setGrupos(List<Grupo> grupos) {
-		this.grupos = grupos;
+
+	public String getSenha2() {
+		return senha2;
 	}
-	
+
+	public void setSenha2(String senha2) {
+		this.senha2 = senha2;
+	}
+
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((dataNascimento == null) ? 0 : dataNascimento.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((grupos == null) ? 0 : grupos.hashCode());
+		result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		result = prime * result + ((senha2 == null) ? 0 : senha2.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -111,15 +140,20 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!codigo.equals(other.codigo))
 			return false;
+		if (dataNascimento == null) {
+			if (other.dataNascimento != null)
+				return false;
+		} else if (!dataNascimento.equals(other.dataNascimento))
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (grupos == null) {
-			if (other.grupos != null)
+		if (grupo == null) {
+			if (other.grupo != null)
 				return false;
-		} else if (!grupos.equals(other.grupos))
+		} else if (!grupo.equals(other.grupo))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
@@ -131,7 +165,11 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!senha.equals(other.senha))
 			return false;
+		if (senha2 == null) {
+			if (other.senha2 != null)
+				return false;
+		} else if (!senha2.equals(other.senha2))
+			return false;
 		return true;
-	}
-	
+	}	
 }

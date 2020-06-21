@@ -40,7 +40,7 @@ public class UsuarioBean implements Serializable{
 		String senha = this.usuario.getSenha();
 		System.out.println("Usuario: "+usuario.getNome());
 
-		System.out.println("Usuario: "+usuario.getGrupos().get(0).getNome());
+		System.out.println("Usuario: "+usuario.getGrupo().getNome());
 		
 		this.usuario.setSenha(FacesUtil.md5(senha));
 		usuarioService.salvar(usuario);
