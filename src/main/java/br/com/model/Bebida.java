@@ -21,14 +21,17 @@ public class Bebida implements Serializable{
 	private Integer codigo;
 	
 	@Column
+	private String sku;
+	
+	@Column
 	private String nome;
 	
 	@Column
-	private String descricao;
+	private String descricao;	
 	
 	@ManyToOne
 	@JoinColumn(name="codigo_categoria", referencedColumnName="codigo")
-	private Categoria categoria = new Categoria();
+	private Categoria categoria;
 	
 	@Column
 	private String teorAlcolico;
@@ -37,67 +40,75 @@ public class Bebida implements Serializable{
 	private String preco;
 	
 	@Column
-	private int quantidade;
+	private Integer quantidade;
 	
 	@Column
 	private String nacionalidade;
-	
+
 	public Integer getCodigo() {
 		return codigo;
 	}
-	
+
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-	
+
+	public String getSku() {
+		return sku;
+	}
+
+	public void setSku(String sku) {
+		this.sku = sku;
+	}
+
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getDescricao() {
 		return descricao;
 	}
-	
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
-	
+
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
+
 	public String getTeorAlcolico() {
 		return teorAlcolico;
 	}
-	
+
 	public void setTeorAlcolico(String teorAlcolico) {
 		this.teorAlcolico = teorAlcolico;
 	}
-	
+
 	public String getPreco() {
 		return preco;
 	}
-	
+
 	public void setPreco(String preco) {
 		this.preco = preco;
 	}
-	
-	public int getQuantidade() {
+
+	public Integer getQuantidade() {
 		return quantidade;
 	}
-	
-	public void setQuantidade(int quantidade) {
+
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
-	
+
 	public String getNacionalidade() {
 		return nacionalidade;
 	}
@@ -117,6 +128,7 @@ public class Bebida implements Serializable{
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((preco == null) ? 0 : preco.hashCode());
 		result = prime * result + quantidade;
+		result = prime * result + ((sku == null) ? 0 : sku.hashCode());
 		result = prime * result + ((teorAlcolico == null) ? 0 : teorAlcolico.hashCode());
 		return result;
 	}
@@ -162,11 +174,16 @@ public class Bebida implements Serializable{
 			return false;
 		if (quantidade != other.quantidade)
 			return false;
+		if (sku == null) {
+			if (other.sku != null)
+				return false;
+		} else if (!sku.equals(other.sku))
+			return false;
 		if (teorAlcolico == null) {
 			if (other.teorAlcolico != null)
 				return false;
 		} else if (!teorAlcolico.equals(other.teorAlcolico))
 			return false;
 		return true;
-	}	
+	}
 }

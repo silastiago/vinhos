@@ -75,7 +75,7 @@ public class Usuario implements Serializable{
 		this.senha = senha;
 	}	
 	
-	@NotNull(message = "Grupo deve ser informado")
+	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name="codigo_usuario"),
 			inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))

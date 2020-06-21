@@ -30,6 +30,7 @@ public class BebidaBean implements Serializable{
 	
 
 	public void cadastrar(){
+		System.out.println("Bebida: "+ bebida.getNome());
 		bebidaService.salvar(bebida);
 
 		FacesContext fc = FacesContext.getCurrentInstance();

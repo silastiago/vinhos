@@ -139,6 +139,17 @@ public class UsuarioBean implements Serializable{
 			e.printStackTrace();
 		}
 	}
+	
+	public void novoUser(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("site/NovoUser/Usuario.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void edicao(){
 		FacesContext fc = FacesContext.getCurrentInstance();

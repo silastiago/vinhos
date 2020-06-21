@@ -41,6 +41,7 @@
 		<intercept-url pattern="/site/Usuario/Edicao/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
 		<intercept-url pattern="/site/Usuario/Novo/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
 		<intercept-url pattern="/site/Usuario/MudarSenha/**" access="isAuthenticated()" />
+		<intercept-url pattern="/site/Usuario/NovoUser/**" access="none" />
 		
 		<intercept-url pattern="/site/Grupo/Consulta/**" access="hasAnyRole('LISTAR', 'ADMIN')" />
 		<intercept-url pattern="/site/Grupo/Edicao/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
@@ -49,7 +50,6 @@
 		<intercept-url pattern="/site/Permissao/Consulta/**" access="hasAnyRole('LISTAR', 'ADMIN')" />
 		<intercept-url pattern="/site/Permissao/Edicao/**" access="hasAnyRole('ADICIONAR', 'ADMIN')"/>
 		<intercept-url pattern="/site/Permissao/Novo/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
-		
 		
 		<intercept-url pattern="/site/Categoria/Consulta/**" access="hasAnyRole('LISTAR', 'ADMIN')" />
 		<intercept-url pattern="/site/Categoria/Edicao/**" access="hasAnyRole('ADICIONAR', 'ADMIN')"/>

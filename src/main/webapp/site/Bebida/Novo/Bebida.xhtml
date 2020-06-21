@@ -26,6 +26,9 @@
 					styleClass="panelgrid-noborder"
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 				
+					<p:outputLabel value="SKU" for="SKU" />
+					<p:inputText id="SKU" value="#{bebidaBean.bebida.sku}" />
+					
 					<p:outputLabel value="Nome" for="nome" />
 					<p:inputText id="nome" value="#{bebidaBean.bebida.nome}" />
 					
@@ -33,19 +36,20 @@
 					<p:inputText id="descricao" value="#{bebidaBean.bebida.descricao}" />
 					
 					<p:outputLabel value="Categoria" for="categoria" />
-					<p:selectOneMenu id="categoria" value="#{bebidaBean.bebida.categoria}"  filter="true" filterMatchMode="contains">
+					<p:selectOneMenu id="categoria" value="#{bebidaBean.bebida.categoria}" converter="categoriaConverter"  filter="true" filterMatchMode="contains">
+							<f:selectItem noSelectionOption="true" itemLabel="Selecione uma bebida"/>
 							<f:selectItems value="#{categoriaBean.listar()}" var="categoria" itemLabel="#{categoria.categoria}" itemValue="#{categoria}" />
 					</p:selectOneMenu>
 					
 					<p:outputLabel value="Estoque" for="estoque" />
-					<p:inputText id="estoque" value="#{bebidaBean.bebida.quantidade}" />
+					<p:spinner id="estoque" value="#{bebidaBean.bebida.quantidade}" />
 					
 					<p:outputLabel value="Teor Alcolico" for="teorAlcolico" />
 					<p:inputText id="teorAlcolico" value="#{bebidaBean.bebida.teorAlcolico}" />
 					
 					
 					<p:outputLabel value="Nacionalidade" for="nacionalidade" />
-					<p:selectOneMenu id="nacionalidade" value="#{bebidaBean.bebida.categoria}" >
+					<p:selectOneMenu id="nacionalidade" value="#{bebidaBean.bebida.nacionalidade}" >
 							<f:selectItem itemLabel="Nacional" itemValue="Nacional"/>
 							<f:selectItem itemLabel="Internacional" itemValue="Internacional"/>
 					</p:selectOneMenu>
