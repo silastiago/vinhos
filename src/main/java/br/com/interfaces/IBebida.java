@@ -14,4 +14,11 @@ public interface IBebida {
 	public void salvar(Bebida bebida);
 	
 	public void remover(Bebida bebida);
+	
+	public List<Bebida> porSKU(String sku);
+	
+	public List<Bebida> porNacionalidade(String nacionalidade);	
+	
+	public List<Bebida> porCategoria(String nacionalidade);
+	
 }

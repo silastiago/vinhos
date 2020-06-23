@@ -41,6 +41,10 @@
 							<f:selectItems value="#{categoriaBean.listar()}" var="categoria" itemLabel="#{categoria.categoria}" itemValue="#{categoria}" />
 					</p:selectOneMenu>
 					
+					<p:outputLabel value="Preço" for="preco" />
+					<p:spinner id="preco" value="#{bebidaBean.bebida.preco}" />
+					
+					
 					<p:outputLabel value="Estoque" for="estoque" />
 					<p:spinner id="estoque" value="#{bebidaBean.bebida.quantidade}" />
 					

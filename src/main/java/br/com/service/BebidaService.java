@@ -39,5 +39,20 @@ public class BebidaService implements Serializable{
 		return bebidas.listar();
 	}
 	
+	@Transactional
+	public List<Bebida> porSKU(String sku) {
+		return bebidas.porSKU(sku);
+	}
+	
+	@Transactional
+	public List<Bebida> porNacionalidade(String nacionalidade) {
+		return bebidas.porNacionalidade(nacionalidade);
+	}
+	
+	@Transactional
+	public List<Bebida> porCategoria(String categoria) {
+		return bebidas.porCategoria(categoria);
+	}
+	
 	
 }

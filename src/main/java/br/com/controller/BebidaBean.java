@@ -24,6 +24,7 @@ public class BebidaBean implements Serializable{
 	@Inject
 	private BebidaService bebidaService;
 	
+	private String metrica;
 	private Bebida bebida = new Bebida();
 	private Bebida bebidaSelecionada;
 	private List<Bebida> listaBebidas = new ArrayList<Bebida>();	
@@ -57,6 +58,20 @@ public class BebidaBean implements Serializable{
 		}
 
 	}
+	
+	
+	public void pesquisar(){
+		//Esta linha salva a entidade grupo.
+		FacesContext fc = FacesContext.getCurrentInstance();
+
+		try {
+			fc.getExternalContext().redirect("../Consulta/Bebidas.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	/** Este metodo Remove um grupo.
 	 *  @param grupo, Este grupo � o objeto Grupo que voc� ir� remover.
@@ -77,6 +92,31 @@ public class BebidaBean implements Serializable{
 		//Esta linha lista os grupos e joga em uma lista de grupos.
 		listaBebidas = bebidaService.listar();
 		//Retorna a lista de grupos
+		return listaBebidas;
+	}	
+	
+	
+	
+	public List<Bebida> listar2(){
+		listaBebidas = new ArrayList<Bebida>();
+		
+		if (metrica.equals("SKU")) {
+			
+			listaBebidas = bebidaService.porSKU(bebida.getSku());
+
+		}else if (metrica.equals("nacionalidade")) {
+			
+			if (bebida.getNacionalidade().equals("todas")) {
+				listaBebidas = bebidaService.listar();
+			}else {
+				listaBebidas = bebidaService.porNacionalidade(bebida.getNacionalidade());
+			}
+			
+		}else if (metrica.equals("Categoria")) {
+			listaBebidas = bebidaService.porCategoria(bebida.getCategoria().getCategoria());
+
+		}
+		
 		return listaBebidas;
 	}	
 
@@ -100,6 +140,14 @@ public class BebidaBean implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public String getMetrica() {
+		return metrica;
+	}
+
+	public void setMetrica(String metrica) {
+		this.metrica = metrica;
 	}
 
 	public BebidaService getBebidaService() {

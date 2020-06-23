@@ -127,7 +127,7 @@ public class Bebida implements Serializable{
 		result = prime * result + ((nacionalidade == null) ? 0 : nacionalidade.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((preco == null) ? 0 : preco.hashCode());
-		result = prime * result + quantidade;
+		result = prime * result + ((quantidade == null) ? 0 : quantidade.hashCode());
 		result = prime * result + ((sku == null) ? 0 : sku.hashCode());
 		result = prime * result + ((teorAlcolico == null) ? 0 : teorAlcolico.hashCode());
 		return result;
@@ -172,7 +172,10 @@ public class Bebida implements Serializable{
 				return false;
 		} else if (!preco.equals(other.preco))
 			return false;
-		if (quantidade != other.quantidade)
+		if (quantidade == null) {
+			if (other.quantidade != null)
+				return false;
+		} else if (!quantidade.equals(other.quantidade))
 			return false;
 		if (sku == null) {
 			if (other.sku != null)

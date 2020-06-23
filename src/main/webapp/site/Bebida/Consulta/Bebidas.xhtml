@@ -20,15 +20,6 @@
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
-						
-					<p:commandButton value="Pesquisar" icon="ui-icon-search"
-						action="#{bebidaBean.pesquisar()}" process="@this"
-						disabled="#{not seguranca.acessoCadastroPermitido}"/>
-
-					<span class="ui-separator"> <span
-						class="ui-icon ui-icon-grip-dotted-vertical" />
-					</span>
-				
 
 					<p:commandButton value="Editar" icon="ui-icon-pencil"
 						title="Editar" process="@this" action="#{bebidaBean.edicao()}"
@@ -46,9 +37,66 @@
 
 				</p:toolbarGroup>
 			</p:toolbar>
+			
+			
+			<div class="ui-fluid">
+				<p:panelGrid id="capaPanel" columns="2" layout="grid"
+					style="margin-top: 20px; margin-bottom: 40px"
+					styleClass="panelgrid-noborder"
+					columnClasses="ui-grid-col-4, ui-grid-col-8">
+
+					<p:selectOneMenu id="metrica" value="#{bebidaBean.metrica}" required="true" requiredMessage="Selecione a metrica a ser coletada.">			
+						
+						<f:selectItem itemLabel="Selecione o tipo de metrica para a pesquisa." noSelectionOption="true" itemDisabled="true"/>
+						<f:selectItem itemValue="SKU" itemLabel="SKU"></f:selectItem>
+						<f:selectItem itemValue="Categoria" itemLabel="Categoria"></f:selectItem>
+						<f:selectItem itemValue="nacionalidade" itemLabel="nacionalidade"></f:selectItem>
+						<f:ajax event="change" render="grupo"/>					
+						
+					</p:selectOneMenu>
+
+
+					 <h:panelGroup layout="block" id="grupo">
+					 
+					 
+					 	
+					 
+					 	<p:outputLabel value="SKU" for="SKU" rendered="#{bebidaBean.metrica eq 'SKU'}"/>
+					 	<p:inputText id="SKU" value="#{bebidaBean.bebida.sku}" rendered="#{bebidaBean.metrica eq 'SKU'}"/>					 	
+					 	
+					 	
+					 	
+					 	<p:outputLabel value="Categoria" for="cat" rendered="#{bebidaBean.metrica eq 'Categoria'}"/>
+					 	<p:selectOneMenu id="cat" value="#{bebidaBean.bebida.categoria}" filter="true" filterMatchMode="contains" 
+											 			converter="categoriaConverter" rendered="#{bebidaBean.metrica eq 'Categoria'}">						 						
+									<f:selectItem itemLabel="Selecione uma categoria" noSelectionOption="true" itemDisabled="true"/>
+									<f:selectItems value="#{categoriaBean.listar()}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.categoria}"/>
+						</p:selectOneMenu>	
+						
+						
+						<p:outputLabel value="Nacionalidade" for="nacionalidade" rendered="#{bebidaBean.metrica eq 'nacionalidade'}"/>
+						<p:selectOneMenu id="nacionalidade" value="#{bebidaBean.bebida.nacionalidade}" rendered="#{bebidaBean.metrica eq 'nacionalidade'}">
+								<f:selectItem itemLabel="Nacional" itemValue="Nacional"/>
+								<f:selectItem itemLabel="Internacional" itemValue="Internacional"/>
+								<f:selectItem itemLabel="todas" itemValue="todas"/>
+						</p:selectOneMenu>	
+					 	
+					 
+					 </h:panelGroup>								
+						
+
+					<p:commandButton value="Listar" icon="ui-icon-search"
+						action="#{bebidaBean.listar2()}" update="tabela_bebidas" />				
+
+					
+					
+				</p:panelGrid>
+			</div>	
+			
+			
 
 			<p:dataTable id="tabela_bebidas" var="bebida"
-				value="#{bebidaBean.listar()}" frame="box" rules="all"
+				value="#{bebidaBean.listaBebidas}" frame="box" rules="all"
 				cellpadding="3" width="100%" headerClass="cabecalho"
 				rowClasses="cor-sim, cor-nao" columnClasses="nome"
 				emptyMessage="Nenhuma bebida Cadastrada"
@@ -57,7 +105,6 @@
 
 				<p:ajax event="rowSelect" update=":frm:toolbar" />
 				<p:ajax event="rowUnselect" update=":frm:toolbar" />
-
 
 				<p:column filterBy="#{bebida.sku}"
 					style="text-align: center; width:5%" filterMatchMode="startsWith">
@@ -130,6 +177,8 @@
 					</f:facet>
 					<h:outputText value="#{bebida.nacionalidade}" />
 				</p:column>
+				
+				
 			
 
 			</p:dataTable>
