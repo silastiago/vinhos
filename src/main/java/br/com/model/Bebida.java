@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Range;
+
 @Entity
 @Table
 public class Bebida implements Serializable{
@@ -40,6 +42,7 @@ public class Bebida implements Serializable{
 	private String preco;
 	
 	@Column
+	@Range(min=1 ,message="A quantidade do estoque não pode ser menor que 1")
 	private Integer quantidade;
 	
 	@Column

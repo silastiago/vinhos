@@ -37,22 +37,38 @@ public class UsuarioBean implements Serializable{
 
 	public void cadastrar() {
 		
-		String senha = this.usuario.getSenha();
-		System.out.println("Usuario: "+usuario.getNome());
-
-		
-		this.usuario.setSenha(FacesUtil.md5(senha));
-		usuarioService.salvar(usuario);
-		
 		FacesContext fc = FacesContext.getCurrentInstance();
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 
-		try {
-			fc.getExternalContext().redirect("../Consulta/Usuario.xhtml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		if (usuario.getSenha().equals(usuario.getSenha2())) {
+			
+			
+			String senha = this.usuario.getSenha();
+			this.usuario.setSenha(FacesUtil.md5(senha));
+			usuarioService.salvar(usuario);
+			
+
+			try {
+				fc.getExternalContext().redirect("../Consulta/Usuario.xhtml");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			
+		}else {
+			
+			fc.addMessage("message" , new FacesMessage(FacesMessage.SEVERITY_ERROR, "","Senhas diferentes"));
+			
+			try {
+				fc.getExternalContext().redirect("./UsuarioNovo.xhtml");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}	
+				
 	}
 
 	public void editar() {

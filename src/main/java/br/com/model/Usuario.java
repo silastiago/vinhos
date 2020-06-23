@@ -9,7 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /** Esta Classe que possui os metodos de acesso getter e setters que representa um usuario do sistema, 
@@ -37,6 +40,7 @@ public class Usuario implements Serializable{
 	private String nome;
 	
 	@NotEmpty(message = "Email deve ser informado")
+	@Email(message = "Email deve ser informado corretamente")
 	@Column(name="email")
 	private String email;
 	
@@ -44,6 +48,7 @@ public class Usuario implements Serializable{
 	private Date dataNascimento;
 	
 	@NotEmpty(message = "Senha deve ser informada")
+	@Size(min = 6, message = "Senha deve ter no minimo {min} caracteres")
 	@Column(name="senha")
 	private String senha;
 	
