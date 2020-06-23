@@ -28,6 +28,7 @@
 
 	<http pattern="/Login.xhtml" security="none" />
 	<http pattern="/javax.faces.resource/**" security="none" />
+	<http pattern="/site/Usuario/NovoUser/**" security="none"/>
 
 
 	<http auto-config="false" use-expressions="true">
@@ -37,28 +38,18 @@
 		<intercept-url pattern="/inicio.xhtml" access="isAuthenticated()" />
 		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
 		
-		<intercept-url pattern="/site/Usuario/Consulta/**" access="hasAnyRole('LISTAR', 'ADMIN')" />
-		<intercept-url pattern="/site/Usuario/Edicao/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
-		<intercept-url pattern="/site/Usuario/Novo/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
+		<intercept-url pattern="/site/Usuario/Consulta/**" access="isAuthenticated()" />
+		<intercept-url pattern="/site/Usuario/Edicao/**" access="isAuthenticated()" />
+		<intercept-url pattern="/site/Usuario/Novo/**" access="isAuthenticated()" />
 		<intercept-url pattern="/site/Usuario/MudarSenha/**" access="isAuthenticated()" />
-		<intercept-url pattern="/site/Usuario/NovoUser/**" access="none" />
 		
-		<intercept-url pattern="/site/Grupo/Consulta/**" access="hasAnyRole('LISTAR', 'ADMIN')" />
-		<intercept-url pattern="/site/Grupo/Edicao/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
-		<intercept-url pattern="/site/Grupo/Novo/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
+		<intercept-url pattern="/site/Categoria/Consulta/**" access="isAuthenticated()" />
+		<intercept-url pattern="/site/Categoria/Edicao/**" access="isAuthenticated()" />
+		<intercept-url pattern="/site/Categoria/Novo/**" access="isAuthenticated()" />		
 		
-		<intercept-url pattern="/site/Permissao/Consulta/**" access="hasAnyRole('LISTAR', 'ADMIN')" />
-		<intercept-url pattern="/site/Permissao/Edicao/**" access="hasAnyRole('ADICIONAR', 'ADMIN')"/>
-		<intercept-url pattern="/site/Permissao/Novo/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
-		
-		<intercept-url pattern="/site/Categoria/Consulta/**" access="hasAnyRole('LISTAR', 'ADMIN')" />
-		<intercept-url pattern="/site/Categoria/Edicao/**" access="hasAnyRole('ADICIONAR', 'ADMIN')"/>
-		<intercept-url pattern="/site/Categoria/Novo/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
-		
-		
-		<intercept-url pattern="/site/Bebida/Consulta/**" access="hasAnyRole('LISTAR', 'ADMIN')" />
-		<intercept-url pattern="/site/Bebida/Edicao/**" access="hasAnyRole('ADICIONAR', 'ADMIN')"/>
-		<intercept-url pattern="/site/Bebida/Novo/**" access="hasAnyRole('ADICIONAR', 'ADMIN')" />
+		<intercept-url pattern="/site/Bebida/Consulta/**" access="isAuthenticated()" />
+		<intercept-url pattern="/site/Bebida/Edicao/**" access="isAuthenticated()" />
+		<intercept-url pattern="/site/Bebida/Novo/**" access="isAuthenticated()" />
 		
 		
 		<intercept-url pattern="/**" access="denyAll" />

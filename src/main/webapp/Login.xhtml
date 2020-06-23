@@ -36,8 +36,11 @@
 						<p:outputLabel value="Senha"/>
 						<p:password id="j_password" />
 						
-						<p:commandButton value="Cadastro" action="#{usuarioBean.novoUser}" ajax="false" />
 						<p:commandButton value="Logar" action="#{loginBean.logar}" ajax="false"/>
+						
+						<h:link outcome="site/Usuario/NovoUser/UsuarioNovo">
+							Cadastro
+						</h:link>
 							
 					</p:panelGrid>
 				</h:form>

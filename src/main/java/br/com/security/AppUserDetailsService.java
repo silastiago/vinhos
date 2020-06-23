@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import br.com.model.Permissao;
 import br.com.model.Usuario;
 import br.com.repository.Usuarios;
 import br.com.util.cdi.CDIServiceLocator;
@@ -34,13 +33,10 @@ public class AppUserDetailsService implements UserDetailsService {
 	}
 
 	private Collection<? extends GrantedAuthority> getGrupos(Usuario usuario) {
+		
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();		
 			
-			for (Permissao permissao : usuario.getGrupo().getPermissoes()) {
-				
-				authorities.add(new SimpleGrantedAuthority(permissao.getNome().toUpperCase()));
-			}
-		
+			authorities.add(new SimpleGrantedAuthority("ADMIN"));		
 		
 		return authorities;
 	}

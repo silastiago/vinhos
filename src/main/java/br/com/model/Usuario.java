@@ -7,8 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -52,9 +50,7 @@ public class Usuario implements Serializable{
 	@Transient
 	private String senha2;
 	
-	@ManyToOne
-	@JoinColumn(name="codigo_grupo", referencedColumnName="codigo")
-	private Grupo grupo = new Grupo();
+	
 
 	public Integer getCodigo() {
 		return codigo;
@@ -104,14 +100,6 @@ public class Usuario implements Serializable{
 		this.senha2 = senha2;
 	}
 
-	public Grupo getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -119,7 +107,6 @@ public class Usuario implements Serializable{
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result + ((dataNascimento == null) ? 0 : dataNascimento.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		result = prime * result + ((senha2 == null) ? 0 : senha2.hashCode());
@@ -150,11 +137,6 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (grupo == null) {
-			if (other.grupo != null)
-				return false;
-		} else if (!grupo.equals(other.grupo))
-			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
@@ -171,5 +153,5 @@ public class Usuario implements Serializable{
 		} else if (!senha2.equals(other.senha2))
 			return false;
 		return true;
-	}	
+	}
 }

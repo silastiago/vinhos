@@ -33,7 +33,7 @@
 						title="Excluir" process="@this" update="tabela_usuarios toolbar"
 						action="#{usuarioBean.excluir}"
 						disabled="#{usuarioBean.usuarioSelecionado == null or not seguranca.acessoRemocaoPermitido}"
-						onclick="if (!confirm('Deseja deletar  #{usuarioBean.usuarioSelecionado.login} ? ')) return false" />
+						onclick="if (!confirm('Deseja deletar  #{usuarioBean.usuarioSelecionado.email} ? ')) return false" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -58,23 +58,36 @@
 			<p:ajax event="rowSelect" update=":frm:toolbar" />
 			<p:ajax event="rowUnselect" update=":frm:toolbar" />
 
-				<p:column filterBy="#{usuario.login}"
+				<p:column filterBy="#{usuario.nome}"
 					style="text-align: center; width:5%" filterMatchMode="startsWith">
 					<f:facet name="header">
-						<h:outputText value="Login" />
+						<h:outputText value="Nome" />
 					</f:facet>
-					<h:outputText value="#{usuario.login}" />
+					<h:outputText value="#{usuario.nome}" />
 				</p:column>
 
-				<p:column style="text-align: center; width:5%">
+				<p:column filterBy="#{usuario.email}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
 					<f:facet name="header">
-						<h:outputText value="Grupos" />
+						<h:outputText value="Email" />
 					</f:facet>
-					<ui:repeat var="grupo" value="#{usuario.grupos}">
-						<h:outputText value="#{grupo.nome}" />
-						<br></br>
-					</ui:repeat>
+					<h:outputText value="#{usuario.email}" />
 				</p:column>
+				
+				
+				<p:column filterBy="#{usuario.dataNascimento}"
+					style="text-align: center; width:5%" filterMatchMode="startsWith">
+					<f:facet name="header">
+						<h:outputText value="Data de Nascimento" />
+					</f:facet>
+					<h:outputText value="#{usuario.dataNascimento}" >
+							<f:convertDateTime pattern="dd/MM/yyyy" type="both" 
+											dateStyle="short" timeZone="GMT-3"/>
+					</h:outputText>
+				</p:column>
+				
+				
+				
 
 			</p:dataTable>
 		</h:form>

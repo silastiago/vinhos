@@ -5,9 +5,6 @@
 	
 	<persistence-unit name="vinhos" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		
-		<class>br.com.model.Permissao</class>
-		<class>br.com.model.Grupo</class>
 		<class>br.com.model.Usuario</class>
 		<class>br.com.model.Categoria</class>
 		<class>br.com.model.Bebida</class>

@@ -32,7 +32,7 @@ public class Usuarios implements Serializable, IUsuario{
 
 	public Usuario porCodigo(Integer codigo) {
 		
-		String jpql = "Select u from Usuario u join fetch u.grupos "
+		String jpql = "Select u from Usuario "
 						+ "where u.codigo = :codigo";
 		
 		
@@ -50,7 +50,7 @@ public class Usuarios implements Serializable, IUsuario{
 	}
 	
 	public Usuario porLogin(String login) {
-		Query query = manager.createQuery("from Usuario where login = :login ");
+		Query query = manager.createQuery("from Usuario where email = :login ");
 		query.setParameter("login", login);
 		
 		Usuario usuario = null; 

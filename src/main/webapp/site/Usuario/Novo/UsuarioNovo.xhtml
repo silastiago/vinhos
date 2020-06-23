@@ -31,9 +31,9 @@
 					<p:outputLabel value="Email" for="Email" />
 					<p:inputText id="Email" value="#{usuarioBean.usuario.email}" />	
 					
-					<p:outputLabel value="Data de Nascimento" for="data" />
-					<p:calendar id="data" value="#{usuarioBean.usuario.dataNascimento}"
-								pattern="dd/MM/yyyy" mask="true" navigator="true" showOn="button">
+					<p:outputLabel value="Data de Nascimento" />
+					<p:calendar id="popup" value="#{usuarioBean.usuario.dataNascimento}"
+								pattern="dd/MM/yyyy" mask="true">
 						<f:convertDateTime pattern="dd/MM/yyyy" type="both" dateStyle="short" timeZone="GMT-3"/>						
 					</p:calendar>									
 					
@@ -41,14 +41,9 @@
 					<p:password id="senha" value="#{usuarioBean.usuario.senha}" />
 					
 					<p:outputLabel value="Confirmação de Senha" for="confirmsenha" />
-					<p:password id="confirmsenha" value="#{usuarioBean.usuario.senha2}" />					
+					<p:password id="confirmsenha" value="#{usuarioBean.usuario.senha2}" />			
 					
-					<p:outputLabel value="Grupo" for="grupo" />
-					<p:selectOneMenu id="grupo" value="#{usuarioBean.usuario.grupo}" converter="grupoConverter" 
-													filter="true" filterMatchMode="contains">
-							<f:selectItem noSelectionOption="true" itemLabel="Selecione um Grupo"/>
-	        				<f:selectItems value="#{grupoBean.listar()}" var="grupos" itemValue="#{grupos}" itemLabel="#{grupos.nome}"/>
-	    			</p:selectOneMenu>
+					
 					
 				</p:panelGrid>
 			</div>	

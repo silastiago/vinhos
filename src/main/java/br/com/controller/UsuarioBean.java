@@ -40,7 +40,6 @@ public class UsuarioBean implements Serializable{
 		String senha = this.usuario.getSenha();
 		System.out.println("Usuario: "+usuario.getNome());
 
-		System.out.println("Usuario: "+usuario.getGrupo().getNome());
 		
 		this.usuario.setSenha(FacesUtil.md5(senha));
 		usuarioService.salvar(usuario);
@@ -73,12 +72,21 @@ public class UsuarioBean implements Serializable{
 	
 	public void alterarPropriaSenha() {
 
-		String senha = this.usuario.getSenha();
+		String senha = usuario.getSenha();
 		usuario = this.getUsuarioLogado().getUsuario();
 		this.usuario.setSenha(FacesUtil.md5(senha));
 		usuarioService.salvar(usuario);
+		
+		FacesContext fc = FacesContext.getCurrentInstance();
 
-		FacesContext.getCurrentInstance().addMessage("message" , new FacesMessage(FacesMessage.SEVERITY_INFO, "","Senha alterada com sucesso"));
+		fc.addMessage("message" , new FacesMessage(FacesMessage.SEVERITY_INFO, "","Senha alterada com sucesso"));
+		
+		try {
+			fc.getExternalContext().redirect("../../../Home.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -144,7 +152,7 @@ public class UsuarioBean implements Serializable{
 		FacesContext fc = FacesContext.getCurrentInstance();
 
 		try {
-			fc.getExternalContext().redirect("site/NovoUser/Usuario.xhtml");
+			fc.getExternalContext().redirect("vinhos/site/NovoUser/UsuarioNovo.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
