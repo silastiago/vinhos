@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  banco:
+                image: mariadb
+                container_name: banco
+                volumes:
+                 - ./banco:/var/lib/mysql
+                restart: always
+                environment:
+                   MYSQL_ROOT_PASSWORD: 4008@R3d3s
+                   MYSQL_DATABASE: vinhos
+                      
+  
+
